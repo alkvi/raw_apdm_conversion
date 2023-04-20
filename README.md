@@ -11,7 +11,10 @@ Instead, use another OS, or for Windows compiling, use Cygwin and GCC.
 
 To install:
 https://cygwin.readthedocs.io/en/latest/install/
+
+~~~
 setup-x86_64.exe --no-admin
+~~~
 
 Then to compile (with link against APDM SDK dll folder placed on C:/apdm_sdk):
 
