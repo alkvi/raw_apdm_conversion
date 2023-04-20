@@ -14,12 +14,18 @@ https://cygwin.readthedocs.io/en/latest/install/
 setup-x86_64.exe --no-admin
 
 Then to compile (with link against APDM SDK dll folder placed on C:/apdm_sdk):
+
+~~~
 cd C:\cygwin64\bin
 gcc.exe -IC:/apdm_sdk/include -IC:/apdm_sdk/include/HDF -o <folder path>/convert_raw_apdm_file.exe <folder path>/convert_raw_apdm_file.c C:/apdm_sdk/libs/Windows/x64/apdm.dll
+~~~
 
 copy apdm.dll and cygwin1.dll to output folder.
 
 To run:
+
+~~~
 ./convert_raw_apdm_file.exe
+~~~
 
 To process different files, just point to different raw files in convert_raw_apdm_file.c and re-compile.
