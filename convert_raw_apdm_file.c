@@ -3,25 +3,25 @@
 #include <stdio.h>
 #include <string.h>
 
-int main()
+int main(int argc, char *argv[])
 {
     printf("This program will process raw APDM files into HDF5 files.\n");
+
+    if (argc < 3) {
+        printf("Usage: %s <output_file> <input_file1> <input_file2> ...\n", argv[0]);
+        return 1;
+    }
 
     apdm_recording_info_t recording_info;
     const char delimiter[] = ",";
     apdm_progress_t current_progress;
 
-    // Set these paths to desired input/output (this ones takes three sensors and combines into a single HDF5 file).
-    const char file_out[] = "29_nov.h5";
-    char *raw_file_path_1 = "../data/apdm_raw_29_nov/XI-001974-0046_2022.11.29-08.38.20.apdm";
-    char *raw_file_path_2 = "../data/apdm_raw_29_nov/XI-004047-0046_2022.11.29-08.38.21.apdm";
-    char *raw_file_path_3 = "../data/apdm_raw_29_nov/XI-004051-0046_2022.11.29-08.37.34.apdm";
+    // Set the output file path
+    const char *file_out = argv[1];
 
-    // Prepare arrays to go into the processing function.
-    char *all_files[3];
-    all_files[0] = raw_file_path_1;
-    all_files[1] = raw_file_path_2;
-    all_files[2] = raw_file_path_3;
+    // Prepare arrays to go into the processing function
+    char **all_files = &argv[2];
+    int num_files = argc - 2;
 
     // Set log level to INFO
     int r = apdm_set_log_level(2);

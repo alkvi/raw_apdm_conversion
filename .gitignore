@@ -2,3 +2,4 @@ data
 apdm.dll
 cygwin1.dll
 convert_raw_apdm_file.exe
+*.h5

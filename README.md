@@ -28,7 +28,7 @@ copy apdm.dll and cygwin1.dll to output folder.
 To run:
 
 ~~~
-./convert_raw_apdm_file.exe
+./convert_raw_apdm_file.exe output_file.h5 input_file1.apdm input_file2.apdm input_file3.apdm
 ~~~
 
-To process different files, just point to different raw files in convert_raw_apdm_file.c and re-compile.
+You can have 1 or more input files.

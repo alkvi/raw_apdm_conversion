@@ -1,5 +1,6 @@
 import os 
 import h5py
+import sys
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -26,9 +27,13 @@ def extract_sensor_into_frame(sensor, label, types, axes):
 
 # We're going to go through the HDF5 file, extract relevant data, plot it
 if __name__ == "__main__":
-    
-    data_file = "data/28_oct.h5"
 
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <input_h5_file>")
+        sys.exit(1)
+
+    data_file = sys.argv[1]
+    
     print("Processing file %s" % (os.path.basename(data_file)))
 
     # Open h5 file for reading
@@ -53,10 +58,12 @@ if __name__ == "__main__":
             if plot_data:
                 acc_data = sensor_frame.iloc[:,0:3].to_numpy()
                 print(acc_data.shape)
-                xaxis = np.arange(0,acc_data.shape[0])
+                xaxis = np.arange(0,acc_data.shape[0]) / 128
                 plt.plot(xaxis, acc_data[:,0])
                 plt.plot(xaxis, acc_data[:,1])
                 plt.plot(xaxis, acc_data[:,2])
+                plt.xlabel("Time (s)")
+                plt.ylabel("Acceleration")
                 plt.title(label)
                 plt.show()  
 
